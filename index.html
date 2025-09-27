@@ -1,1 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Mehak & Gautam's Wedding Invite 🌸</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Great+Vibes&family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Mobile-first styles */
+        :root {
+            --phone-background: #ffffff;
+            --desktop-background: #f0f0f0;
+            --phone-border-color: #1a1a1a;
+            --notch-color: #1a1a1a;
+            --text-color: #333;
+            --accent-color: #5d78a4;
+        }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--phone-background);
+            overflow: hidden; /* Prevent scrolling on the body */
+        }
+
+        #phone-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--phone-background);
+            box-sizing: border-box;
+            position: relative;
+        }
+        
+        section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 2rem;
+            
+            /* Animation properties */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 0;
+        }
+
+        section.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+        }
+
+        #preview {
+            padding: 0;
+            background-image: url('https://kapilatgoogle.github.io/draft/preview.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* --- Hero Section Styles --- */
+        #hero {
+            justify-content: flex-start;
+            padding: 0;
+            position: relative;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+            padding-top: 40vh; /* Pushes content down to create top margin */
+            box-sizing: border-box;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-content h2 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--accent-color);
+            font-size: 3.2rem;
+            margin: 0 0 1rem 0;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        .hero-content p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 0 2rem 0;
+            max-width: 300px;
+        }
+
+        #countdown {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .timer-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 75px;
+        }
+
+        .timer-box span {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+            color: var(--accent-color);
+        }
+        
+        .timer-box div {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* Styles for flowers at the bottom of the section */
+        #hero img, #games img, #couple .flower-img {
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* --- Couple Section Styles --- */
+        #couple {
+            background-color: #f7f3ed; /* Light, elegant background */
+            padding: 2.5rem 1rem 150px 1rem; 
+            justify-content: flex-start;
+            text-align: center;
+            overflow-y: auto; /* Allow scrolling inside section */
+        }
+
+        /* Hide scrollbar for aesthetics on couple section */
+        #couple::-webkit-scrollbar { display: none; }
+        #couple { -ms-overflow-style: none; scrollbar-width: none; }
+
+        #couple h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: normal;
+        }
+
+        /* Container for each person's content */
+        .couple-details {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            width: 100%;
+            padding: 1rem 0; /* Add vertical padding between sections */
+            margin-bottom: 1rem;
+        }
+        
+        .couple-bio {
+            text-align: center;
+            order: 2; /* Text comes second on mobile */
+            padding: 0 0.5rem;
+        }
+
+        .couple-image-container {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            order: 1; /* Image comes first on mobile */
+            margin-bottom: 1rem; 
+            position: relative; /* To hold the decorative image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* The main circular image */
+        .couple-image-container img.main-pic {
+            width: 150px; /* Actual photo size */
+            height: 150px;
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 2px solid white; /* Small white border for contrast */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Decorative floral frame image */
+        .couple-image-container img.frame-decor {
+            position: absolute;
+            width: 200px; /* Size of the entire frame */
+            height: 200px;
+            z-index: 4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Override global flower image styles */
+            bottom: initial;
+            left: initial;
+            width: initial;
+        }
+
+
+        .couple-bio h5 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #444;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .couple-bio p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.85rem; 
+            line-height: 1.45; 
+            color: var(--text-color);
+            margin-bottom: 0; 
+        }
+
+        /* Desktop/Larger phone view: Horizontal layout */
+        @media (min-width: 480px) {
+            
+            .couple-details {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: flex-start; /* Align content to the top of the flex container */
+                gap: 20px;
+                max-width: 600px;
+                margin: 0 auto 2.5rem auto;
+            }
+
+            /* --- Mehak (Default: Image Left, Text Right) --- */
+            .couple-details.mehak-details {
+                text-align: left;
+            }
+            .couple-details.mehak-details .couple-image-container {
+                order: 1;
+                margin-bottom: 0;
+            }
+            .couple-details.mehak-details .couple-bio {
+                order: 2;
+                text-align: left;
+            }
+
+
+            /* --- Gautam (Reversed: Text Left, Image Right) --- */
+            .couple-details.gautam-details {
+                text-align: right; 
+            }
+            .couple-details.gautam-details .couple-image-container {
+                order: 2;
+                margin-bottom: 0;
+            }
+            .couple-details.gautam-details .couple-bio {
+                order: 1;
+                text-align: right; 
+            }
+            
+            .couple-details.gautam-details .couple-bio h5,
+            .couple-details.gautam-details .couple-bio p {
+                text-align: right;
+            }
+        }
+        
+        /* --- Functions Section Styles --- */
+        #functions {
+            padding: 0;
+            justify-content: flex-start;
+        }
+        /* ... (rest of functions, games, and media query styles remain the same) ... */
+
+        .function-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem;
+            padding-top: 10vh;
+            box-sizing: border-box;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .function-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .function-content .material-icons {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .function-content h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            margin: 0 0 1.5rem 0;
+            font-weight: normal;
+        }
+
+        .function-content p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0.2rem 0;
+            font-weight: 500;
+        }
+
+        .function-content a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .function-content a:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- Game Section Styles --- */
+        #games {
+            background-color: white;
+            color: var(--text-color);
+            text-align: center;
+            padding: 2rem;
+            padding-bottom: 150px; /* Space for flowers */
+        }
+        
+        #game-start, #quiz-container, #results-container {
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        #game-start h2, #results-container h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        #start-quiz-btn, #next-question-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        #start-quiz-btn:hover, #next-question-btn:hover {
+            background-color: #4a6084;
+        }
+
+        #next-question-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        #quiz-container {
+            height: auto;
+            max-height: 90%;
+        }
+        
+        #question-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        #options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        
+        .option-btn {
+            background-color: white;
+            border: 2px solid #b0c4de;
+            border-radius: 15px;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option-btn:hover {
+            background-color: #f4f7fa;
+            border-color: var(--accent-color);
+        }
+
+        .option-btn.selected {
+             background-color: var(--accent-color);
+             color: white;
+             border-color: var(--accent-color);
+        }
+        
+        #results-container p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        #score-message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        /* Styles for desktop and larger devices */
+        @media (min-width: 600px) {
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: var(--desktop-background);
+            }
+
+            #phone-container {
+                max-width: 390px; /* Common phone width */
+                height: 85vh;
+                max-height: 844px; /* Common phone height */
+                border: 14px solid var(--phone-border-color);
+                border-radius: 50px;
+                box-shadow: 0px 20px 50px -10px rgba(0, 0, 0, 0.4);
+                position: relative;
+            }
+
+            /* The 'notch' on the phone */
+            #phone-container::before {
+                content: '';
+                position: absolute;
+                top: 0px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 180px;
+                height: 28px;
+                background: var(--phone-border-color);
+                border-bottom-left-radius: 18px;
+                border-bottom-right-radius: 18px;
+                z-index: 10;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main id="phone-container">
+        <section id="preview"></section>
+        
+        <section id="hero">
+            <div class="hero-bg-container">
+                <div class="hero-bg"></div>
+                <div class="hero-bg"></div>
+            </div>
+            <div class="hero-content">
+                <h2>Mehak & Gautam</h2>
+                <p>Join us for celebrating love, laughter & happily ever after</p>
+                <div id="countdown">
+                    <div class="timer-box"><span id="days">0</span><div>Days</div></div>
+                    <div class="timer-box"><span id="hours">0</span><div>Hours</div></div>
+                    <div class="timer-box"><span id="minutes">0</span><div>Minutes</div></div>
+                </div>
+            </div>
+            <img class="flower-img" src="https://kapilatgoogle.github.io/draft/flowers.png" alt="Decorative Flowers">
+        </section>
+        
+        <section id="couple">
+            <h1>Meet the Couple</h1>
+
+            <!-- Mehak's Details (Image Left, Text Right) -->
+            <div class="couple-details mehak-details">
+                <div class="couple-image-container">
+                  <!-- The actual photo -->
+                    <img class="main-pic" src="https://kapilatgoogle.github.io/draft/mehak.png" alt="Mehak">
+                </div>
+                <div class="couple-bio">
+                    <h5>The Chief Architect of Fun, '90s Kid Edition!</h5>
+                    <p>Dummy Text</p>
+                </div>
+            </div>
+
+            <!-- Gautam's Details (Text Left, Image Right) -->
+            <div class="couple-details gautam-details">
+                <div class="couple-bio">
+                    <h5>The Spice Warrior & All-Rounder Extraordinaire!</h5>
+                    <p>Dummy Text</p>
+                </div>
+                <div class="couple-image-container">
+                
+                    <!-- The actual photo -->
+                    <img class="main-pic" src="https://kapilatgoogle.github.io/draft/gautam.png" alt="Gautam">
+                </div>
+            </div>
+            
+            <img class="flower-img" src="https://kapilatgoogle.github.io/draft/flowers.png" alt="Decorative Flowers">
+        </section>
+
+        <section id="functions">
+            <!-- Slides will be dynamically injected here by JS -->
+        </section>
+        <section id="games">
+             <div id="game-start">
+                <h2>How Well Do You Know Mehak?</h2>
+                <button id="start-quiz-btn">Let's Check</button>
+            </div>
+            <div id="quiz-container" class="hidden">
+                <p id="question-text"></p>
+                <div id="options-container">
+                    <!-- Options will be dynamically inserted here -->
+                </div>
+                <button id="next-question-btn">Next</button>
+            </div>
+            <div id="results-container" class="hidden">
+                <h3>Your Score: <span id="score"></span></h3>
+                <p id="score-message"></p>
+                <p>Take a screenshot for bragging rights at the wedding!</p>
+            </div>
+            <img class="flower-img" src="https://kapilatgoogle.github.io/draft/flowers.png" alt="Decorative Flowers">
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('phone-container');
+            const sections = document.querySelectorAll('section');
+            let currentSectionIndex = 0;
+            let isAnimating = false;
+            const animationDuration = 800; // Must match CSS transition duration
+
+            // --- Core Navigation Logic ---
+            function showSection(index) {
+                if (isAnimating || index < 0 || index >= sections.length || index === currentSectionIndex) {
+                    return;
+                }
+                
+                isAnimating = true;
+                sections[currentSectionIndex].classList.remove('active');
+                sections[index].classList.add('active');
+                currentSectionIndex = index;
+
+                // Reset states when changing sections
+                if (sections[index].id === 'functions') {
+                    // Ensure function slideshow starts from the first slide when entered
+                    showFunction(0); 
+                }
+                if (sections[index].id === 'games') {
+                    resetQuiz();
+                }
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, animationDuration);
+            }
+
+            // Set initial section
+            sections[0].classList.add('active');
+
+            // --- Navigation Event Listeners (Scroll/Swipe) ---
+            container.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                if (event.deltaY > 0) {
+                    showSection(currentSectionIndex + 1);
+                } else {
+                    showSection(currentSectionIndex - 1);
+                }
+            }, { passive: false });
+
+            let touchStartY = 0;
+            let touchEndY = 0;
+            container.addEventListener('touchstart', (event) => { touchStartY = event.touches[0].clientY; }, { passive: true });
+            container.addEventListener('touchmove', (event) => { touchEndY = event.touches[0].clientY; }, { passive: true });
+            container.addEventListener('touchend', () => {
+                const swipeDistance = touchStartY - touchEndY;
+                const swipeThreshold = 50; 
+
+                if (swipeDistance > swipeThreshold) {
+                    showSection(currentSectionIndex + 1);
+                } else if (swipeDistance < -swipeThreshold) {
+                    showSection(currentSectionIndex - 1);
+                }
+                
+                touchStartY = 0;
+                touchEndY = 0;
+            }, { passive: true });
+
+
+            // --- Hero Background Slideshow ---
+            const heroImages = [
+                'https://kapilatgoogle.github.io/wedding-invite/1.jpg',
+                'https://kapilatgoogle.github.io/wedding-invite/2.jpg',
+                'https://kapilatgoogle.github.io/wedding-invite/3.jpg',
+                'https://kapilatgoogle.github.io/wedding-invite/4.jpg',
+                'https://kapilatgoogle.github.io/wedding-invite/5.jpg',
+                'https://kapilatgoogle.github.io/wedding-invite/6.jpg'
+            ];
+            const heroBgDivs = document.querySelectorAll('#hero .hero-bg');
+            let currentImageIndex = 0;
+            let activeBgIndex = 0;
+
+            // Preload images
+            heroImages.forEach(src => { new Image().src = src; });
+            
+            if (heroBgDivs.length > 0) {
+                heroBgDivs[activeBgIndex].style.backgroundImage = `url('${heroImages[currentImageIndex]}')`;
+                heroBgDivs[activeBgIndex].style.opacity = 1;
+
+                setInterval(() => {
+                    currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+                    const inactiveBgIndex = 1 - activeBgIndex;
+                    heroBgDivs[inactiveBgIndex].style.backgroundImage = `url('${heroImages[currentImageIndex]}')`;
+                    heroBgDivs[inactiveBgIndex].style.opacity = 1;
+                    heroBgDivs[activeBgIndex].style.opacity = 0;
+                    activeBgIndex = inactiveBgIndex;
+                }, 4000);
+            }
+
+            // --- Countdown Timer Logic ---
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            // Target date set to 2025-11-12 at midnight IST (UTC+5:30)
+            const countdownDateIST = new Date("2025-11-12T00:00:00+05:30").getTime(); 
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distanceIST = countdownDateIST - now;
+
+                if (distanceIST < 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('countdown').innerHTML = "The big day is here!";
+                    return;
+                }
+
+                const days = Math.floor(distanceIST / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distanceIST % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distanceIST % (1000 * 60 * 60)) / (1000 * 60));
+
+                daysEl.innerText = days;
+                hoursEl.innerText = hours;
+                minutesEl.innerText = minutes;
+            }
+
+            // Run immediately and then every minute (60000ms)
+            updateCountdown();
+            const timerInterval = setInterval(updateCountdown, 60000); 
+
+            // --- Functions Slideshow Logic ---
+            const functionDetails = {
+                'mehandi': { icon: 'spa', title: 'Mehandi Lunch', dateTime: '11th Nov, Noon', venue: 'Pearl Hall', theme: 'Rani Pink & Orange theme', mapLink: 'https://maps.app.goo.gl/PKSrMmETdSkKjdLw6', imageUrl: 'https://kapilatgoogle.github.io/wedding-invite/mehendi-ceremony.jpg', color: '#658c35' },
+                'ring': { icon: 'diamond', title: 'Ring Ceremony', dateTime: '11th Nov, 7 PM onwards', venue: 'Amber Hall', theme: 'Starry night: Navy blue, gold, silver & disco balls', mapLink: 'https://maps.app.goo.gl/PKSrMmETdSkKjdLw6', imageUrl: 'https://kapilatgoogle.github.io/wedding-invite/ring-ceremony.jpg', color: '#5d78a4' },
+                'haldi': { icon: 'filter_vintage', title: 'Haldi Function', dateTime: '12th Nov, 11 AM', venue: 'Pool Side', theme: 'Sunflower yellow & lavender theme', mapLink: 'https://maps.app.goo.gl/PKSrMmETdSkKjdLw6', imageUrl: 'https://kapilatgoogle.github.io/wedding-invite/haldi-ceremony.jpg', color: '#E5A77E' },
+                'wedding': { icon: 'local_florist', title: 'Wedding Day', dateTime: '12th Nov, 7 PM onwards', venue: 'Palm Court', theme: 'Ivory, Royal red/maroon, and gold theme', mapLink: 'https://maps.app.goo.gl/PKSrMmETdSkKjdLw6', imageUrl: 'https://kapilatgoogle.github.io/wedding-invite/wedding-ceremony.jpg', color: '#C71585' }
+            };
+
+            const functionsContainer = document.getElementById('functions');
+            const functionKeys = Object.keys(functionDetails);
+            let currentFunctionIndex = 0;
+
+            functionKeys.forEach(key => {
+                const func = functionDetails[key];
+                const slide = document.createElement('div');
+                slide.classList.add('function-slide');
+                slide.style.backgroundImage = `url('${func.imageUrl}')`;
+                slide.style.color = func.color;
+                
+                slide.innerHTML = `
+                    <div class="function-content">
+                        <i class="material-icons">${func.icon}</i>
+                        <h2>${func.title}</h2>
+                        <p><strong>When:</strong> ${func.dateTime}</p>
+                        <p><strong>Where:</strong> ${func.venue}</p>
+                        <p><strong>Theme:</strong> ${func.theme}</p>
+                        <a href="${func.mapLink}" target="_blank" style="color: ${func.color}; border-color: ${func.color};">View on Map</a>
+                    </div>
+                `;
+                // Ensures correct order (Mehandi -> Ring -> Haldi -> Wedding)
+                functionsContainer.append(slide);
+            });
+
+            const functionSlides = document.querySelectorAll('.function-slide');
+
+            function showFunction(index) {
+                functionSlides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+            }
+            
+            // Initialize first slide
+            showFunction(0);
+
+            // Automation for function slideshow (changes every 5 seconds)
+            setInterval(() => {
+                // Cycle through slides: (current + 1) % total number of slides
+                currentFunctionIndex = (currentFunctionIndex + 1) % functionSlides.length;
+                showFunction(currentFunctionIndex);
+            }, 5000); // 5000 milliseconds = 5 seconds
+
+
+            // --- Game Logic ---
+            const quizData = [
+                { question: "Two of these are true, one is a lie. Can you spot the lie?", options: ["Has packed outfits for an international trip basis weather for the day, place of visit and timing of the sight seeing ( morning , twilight or night )", "One of her instagram singing videos got viral when it was reshares by Jonita", "Has played cricket only once, got injured without batting a bowl or even bowling one. Has never dared to play again"], answer: "One of her instagram singing videos got viral when it was reshares by Jonita" },
+                { question: "What is Mehak most likely to order on a cheat day?", options: ["Margherita Pizza 🍕", "Aaloo tikki Chaat 🌶️", "Nutella strawberry crepes 🍓🍫", "Chilli garlic noodles 🍜"], answer: "Nutella strawberry crepes 🍓🍫" },
+                { question: "What's her all time favourite song?", options: ["Aao kabhi haveli pe", "Mayya Mayya", "Lag ja gale", "Baahon ke darmiyan"], answer: "Lag ja gale" },
+                { question: "Which of these is her ideal weekend plan?", options: ["Netflix & Chill 📺", "Dancing till 2 AM 💃", "Road trip with friends 🚗", "Painting, music and food at home 🎨🎶"], answer: "Painting, music and food at home 🎨🎶" },
+                { question: "Mehak’s guilty pleasure show/movie would be?", options: ["Jab we met 🎬", "F.R.I.E.N.D.S. 📺", "The Ugly truth", "Sarabhai vs Sarabhai 💁🏻‍♀️"], answer: "Jab we met 🎬" },
+                { question: "What’s the one thing she always carries in her bag?", options: ["Perfume", "Lip balm 💄", "Sunglasses 🕶️", "Hand sanitizer"], answer: "Perfume" },
+                { question: "What is Mehak’s go-to dance move at a party?", options: ["Bhangra hands up 🙌", "Bollywood thumka 💃", "Freestyle groove ✨", "All the above"], answer: "All the above" },
+                { question: "What’s her favorite way to start the day?", options: ["A morning walk 🚶‍♀️", "A cup of coffee ☕", "Scrolling Instagram 📱", "Snoozing the alarm… again ⏰"], answer: "A morning walk 🚶‍♀️" },
+                { question: "If she had to pick a dream vacation, where would it be?", options: ["Paris for the fashion & romance 🇫🇷", "Bali for the beaches 🏝️", "Italy for the food 🍕", "Iceland for the views 🏔️"], answer: "Iceland for the views 🏔️" },
+                { question: "What is Mehak's strength in a group project?", options: ["Connections and bonding👩‍💼", "Teaching new joiners 👩‍🏫", "Writing strong mails when things go wrong", "Multitasking"], answer: "Writing strong mails when things go wrong" }
+            ];
+
+            const startBtn = document.getElementById('start-quiz-btn');
+            const gameStartContainer = document.getElementById('game-start');
+            const quizContainer = document.getElementById('quiz-container');
+            const resultsContainer = document.getElementById('results-container');
+            const questionText = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options-container');
+            const nextBtn = document.getElementById('next-question-btn');
+            const scoreEl = document.getElementById('score');
+            const scoreMsgEl = document.getElementById('score-message');
+
+            let quizQuestionIndex = 0;
+            let score = 0;
+            
+            function startQuiz() {
+                gameStartContainer.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+                resultsContainer.classList.add('hidden');
+                quizQuestionIndex = 0;
+                score = 0;
+                loadQuestion();
+            }
+
+            function resetQuiz() {
+                gameStartContainer.classList.remove('hidden');
+                quizContainer.classList.add('hidden');
+                resultsContainer.classList.add('hidden');
+            }
+
+            function loadQuestion() {
+                nextBtn.disabled = true;
+                const currentQuizData = quizData[quizQuestionIndex];
+                questionText.textContent = currentQuizData.question;
+                optionsContainer.innerHTML = '';
+                currentQuizData.options.forEach(optionText => {
+                    const button = document.createElement('button');
+                    button.textContent = optionText;
+                    button.classList.add('option-btn');
+                    button.addEventListener('click', selectOption);
+                    optionsContainer.appendChild(button);
+                });
+            }
+
+            function selectOption(event) {
+                const selectedButton = event.target;
+                const allOptions = optionsContainer.querySelectorAll('.option-btn');
+                allOptions.forEach(btn => btn.classList.remove('selected'));
+                selectedButton.classList.add('selected');
+                nextBtn.disabled = false;
+            }
+
+            function handleNextQuestion() {
+                const selectedButton = optionsContainer.querySelector('.selected');
+                if (!selectedButton) return;
+
+                if (selectedButton.textContent === quizData[quizQuestionIndex].answer) {
+                    score++;
+                }
+
+                quizQuestionIndex++;
+                if (quizQuestionIndex < quizData.length) {
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }
+
+            function showResults() {
+                quizContainer.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                scoreEl.textContent = `${score} / ${quizData.length}`;
+                
+                let message = '';
+                if (score <= 3) {
+                    message = 'You barely know Mehak 😅';
+                } else if (score <= 7) {
+                    message = 'Pretty good!';
+                } else {
+                    message = 'You’re basically her BFF 💕';
+                }
+                scoreMsgEl.textContent = message;
+            }
+
+            startBtn.addEventListener('click', startQuiz);
+            nextBtn.addEventListener('click', handleNextQuestion);
+            
+            resetQuiz();
+        });
+    </script>
+</body>
+</html>
