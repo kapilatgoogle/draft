@@ -63,6 +63,10 @@
         .quiz-option:disabled {
             cursor: not-allowed;
         }
+
+        #invite-section {
+            transition: background-image 1s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen text-black">
@@ -75,7 +79,7 @@
                                    md:shadow-2xl md:border-4 md:border-black">
 
         <!-- App Header -->
-        <header class="flex items-center justify-center p-4 border-b border-gray-200 flex-shrink-0">
+        <header class="flex items-center justify-center p-4 flex-shrink-0">
             <h1 class="text-3xl font-bold text-custom-blue" style="font-family: 'Dancing Script', cursive;">#GaMe ON</h1>
         </header>
 
@@ -85,31 +89,31 @@
             <!-- Each section is a full-height, snap-aligned container -->
             
             <!-- Preview Section -->
-            <section id="preview-section" class="page-section h-full flex flex-col items-center justify-end p-6 pb-16 text-center" style="scroll-snap-align: start;">
+            <section id="preview-section" class="page-section h-full flex flex-col items-center justify-end p-6 pb-16 text-center bg-cover bg-center" style="scroll-snap-align: start; background-image: url('https://kapilatgoogle.github.io/draft/preview-bg.jpg');">
                 <h2 class="text-4xl font-bold text-center text-black" style="font-family: 'Edu TAS Beginner', cursive;">Save The Date</h2>
-                <p class="mt-4 text-center text-5xl text-custom-blue" style="font-family: 'Dancing Script', cursive;">12 November, 2025</p>
+                <p class="mt-4 text-center text-3xl text-custom-blue" style="font-family: 'Dancing Script', cursive;">11 & 12 November, 2025</p>
             </section>
 
             <!-- Invite Section -->
-            <section id="invite-section" class="page-section h-full flex flex-col items-center justify-end p-6 pb-16 text-center" style="scroll-snap-align: start;">
-                <h2 class="text-4xl font-bold text-custom-blue whitespace-nowrap" style="font-family: 'Edu TAS Beginner', cursive;">Mehak & Gautam</h2>
-                <p id="invite-text" class="mt-4 text-lg text-gray-700 max-w-xs">Join us in celebrating love, laughter & happily ever after</p>
-                <div id="countdown-container" class="flex items-center justify-center space-x-2 md:space-x-4 mt-8">
+            <section id="invite-section" class="page-section h-full flex flex-col items-center justify-end p-6 pb-12 text-center" style="scroll-snap-align: start;">
+                <h2 class="text-4xl font-bold text-custom-blue whitespace-nowrap" style="font-family: 'Dancing Script', cursive;">Mehak & Gautam</h2>
+                <p id="invite-text" class="mt-2 text-lg text-gray-700 max-w-xs">Join us in celebrating love, laughter & happily ever after</p>
+                <div id="countdown-container" class="flex items-center justify-center space-x-1 md:space-x-2 mt-4">
                     <!-- Days -->
                     <div class="text-center">
-                        <div id="days" class="text-4xl font-bold p-3 md:p-4 bg-white rounded-lg text-custom-blue w-20">00</div>
+                        <div id="days" class="text-3xl font-bold p-2 md:p-3 bg-white rounded-lg text-custom-blue w-16">00</div>
                         <div class="text-sm uppercase text-gray-500 mt-1">Days</div>
                     </div>
-                    <div class="text-4xl font-bold text-custom-blue pb-6">:</div>
+                    <div class="text-3xl font-bold text-custom-blue pb-5">:</div>
                     <!-- Hours -->
                     <div class="text-center">
-                        <div id="hours" class="text-4xl font-bold p-3 md:p-4 bg-white rounded-lg text-custom-blue w-20">00</div>
+                        <div id="hours" class="text-3xl font-bold p-2 md:p-3 bg-white rounded-lg text-custom-blue w-16">00</div>
                         <div class="text-sm uppercase text-gray-500 mt-1">Hours</div>
                     </div>
-                    <div class="text-4xl font-bold text-custom-blue pb-6">:</div>
+                    <div class="text-3xl font-bold text-custom-blue pb-5">:</div>
                     <!-- Minutes -->
                     <div class="text-center">
-                        <div id="minutes" class="text-4xl font-bold p-3 md:p-4 bg-white rounded-lg text-custom-blue w-20">00</div>
+                        <div id="minutes" class="text-3xl font-bold p-2 md:p-3 bg-white rounded-lg text-custom-blue w-16">00</div>
                         <div class="text-sm uppercase text-gray-500 mt-1">Minutes</div>
                     </div>
                 </div>
@@ -230,6 +234,36 @@
                 sectionObserver.observe(section);
             });
             
+            // --- Invite Section Background Slideshow ---
+            const inviteSection = document.getElementById('invite-section');
+            // Add your image URLs to this array
+            const inviteBackgrounds = [
+                'https://kapilatgoogle.github.io/draft/hero1.jpg',
+                'https://kapilatgoogle.github.io/draft/hero2.jpg',
+                'https://kapilatgoogle.github.io/draft/hero3.jpg',
+                'https://kapilatgoogle.github.io/draft/hero4.jpg',
+                'https://kapilatgoogle.github.io/draft/hero5.jpg',
+                'https://kapilatgoogle.github.io/draft/hero6.jpg'
+            ]; 
+            let currentInviteBgIndex = 0;
+
+            if (inviteBackgrounds.length > 0) {
+                // Preload images for smoother transitions
+                inviteBackgrounds.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+                
+                // Set initial background
+                inviteSection.style.backgroundImage = `url('${inviteBackgrounds[0]}')`;
+                inviteSection.classList.add('bg-cover', 'bg-center');
+
+                setInterval(() => {
+                    currentInviteBgIndex = (currentInviteBgIndex + 1) % inviteBackgrounds.length;
+                    inviteSection.style.backgroundImage = `url('${inviteBackgrounds[currentInviteBgIndex]}')`;
+                }, 5000); // Change image every 5 seconds
+            }
+
             // --- Countdown Timer Logic ---
             const weddingDate = new Date('2025-11-12T00:00:00');
             const inviteText = document.getElementById('invite-text');
@@ -454,11 +488,11 @@
                 resultsWrapper.classList.remove('hidden');
                 scoreText.innerText = `${score} / ${quizData.length}`;
                 if (score <= 3) {
-                    resultMessage.innerText = "You barely know Mehak 😅";
+                    resultMessage.innerText = "Don't worry, the wedding is a great place to start building your bond! Think of this score as a 'Get to Know the Bride' training module. Failure is just feedback... (and you need a lot more feedback).";
                 } else if (score <= 7) {
-                    resultMessage.innerText = "Pretty good!";
+                    resultMessage.innerText = "A great score! You clearly care. You know the important stuff, like her favorite TV show and her biggest pet peeve. You’re the friend who always remembers her birthday, but sometimes gets the year wrong.";
                 } else {
-                    resultMessage.innerText = "You’re basically her BFF 💕";
+                    resultMessage.innerText = "You are her soulmate, her therapist, and her personal historian! No one could compete with this score.. You win!";
                 }
             }
 
@@ -478,4 +512,5 @@
     </script>
 </body>
 </html>
+
 
