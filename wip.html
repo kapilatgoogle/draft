@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Shell</title>
+    <title>Let the GaMe Begin!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Google Fonts & Icons -->
@@ -80,11 +80,11 @@
 
         <!-- App Header -->
         <header class="flex items-center justify-center p-4 flex-shrink-0">
-            <h1 class="text-3xl font-bold text-custom-blue" style="font-family: 'Dancing Script', cursive;">#GaMe ON</h1>
+            <h1 class="text-3xl font-bold text-custom-blue" style="font-family: 'Dancing Script', cursive;">#GaMeON!</h1>
         </header>
 
         <!-- Main Content Area: Now a single scrollable container with snapping -->
-        <main id="main-content" class="flex-grow overflow-y-auto app-screen" style="scroll-snap-type: y mandatory;">
+        <main id="main-content" class="flex-grow overflow-y-auto app-screen min-h-0" style="scroll-snap-type: y mandatory;">
             
             <!-- Each section is a full-height, snap-aligned container -->
             
@@ -96,7 +96,7 @@
 
             <!-- Invite Section -->
             <section id="invite-section" class="page-section h-full flex flex-col items-center justify-end p-6 pb-12 text-center" style="scroll-snap-align: start;">
-                <h2 class="text-4xl font-bold text-custom-blue whitespace-nowrap" style="font-family: 'Dancing Script', cursive;">Mehak & Gautam</h2>
+                <h2 class="text-3xl font-bold text-custom-blue whitespace-nowrap" style="font-family: 'Dancing Script', cursive;">Mehak & Gautam</h2>
                 <p id="invite-text" class="mt-2 text-lg text-gray-700 max-w-xs">Join us in celebrating love, laughter & happily ever after</p>
                 <div id="countdown-container" class="flex items-center justify-center space-x-1 md:space-x-2 mt-4">
                     <!-- Days -->
@@ -121,8 +121,61 @@
 
             <!-- Couple Section -->
             <section id="couple-section" class="page-section h-full flex flex-col items-center justify-center p-6" style="scroll-snap-align: start;">
-                <h2 class="text-2xl font-bold text-center text-custom-blue" style="font-family: 'Edu TAS Beginner', cursive;">Couple</h2>
-                <p class="mt-4 text-center">Information about the couple.</p>
+                <h2 class="text-2xl font-bold text-center text-custom-blue flex-shrink-0 mb-4" style="font-family: 'Edu TAS Beginner', cursive;">Meet the Couple</h2>
+                
+                <div class="w-full flex-grow relative flex items-center justify-center">
+                    <!-- Slideshow Container -->
+                    <div id="couple-slider" class="w-full h-full flex overflow-x-auto snap-x snap-mandatory scroll-smooth app-screen">
+                        
+                        <!-- Slide 1: Mehak -->
+                        <div class="couple-slide w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4">
+                            <div class="w-full max-w-xs h-[95%] bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                                <!-- Image -->
+                                <div class="h-2/5 w-full bg-cover bg-center" style="background-image: url('https://kapilatgoogle.github.io/draft/mdp.jpg');">
+                                </div>
+                                <!-- Text Content -->
+                                <div class="p-4 flex-grow overflow-y-auto app-screen">
+                                    <h3 class="text-2xl font-bold text-custom-blue text-center" style="font-family: 'Edu TAS Beginner', cursive;">Mehak</h3>
+                                    <p class="text-sm text-gray-500 mt-1 italic text-center">The Chief Architect of Fun, '90s Kid Edition!</p>
+                                    <p class="text-xs text-gray-700 mt-4 text-left">
+                                        If life were a talent show, Mehak would be the singing, choreographing, set-designing, and backstage-managing lead. A <span class="text-custom-blue font-semibold">pampered '90s kid</span> whose love for the <span class="text-custom-blue font-semibold">creative arts</span> is boundless—she can paint, dance, and sing with elan. The <span class="text-custom-blue font-semibold">apple of everyone's eye</span> and the family's calm, <span class="text-custom-blue font-semibold">organized problem-solver</span>, she tackles life's complexities without breaking a sweat.
+                                    </p>
+                                     <p class="text-xs text-gray-700 mt-2 text-left">
+                                        Now, she’s ready for her biggest, most beautiful project yet: <span class="text-custom-blue font-semibold">marriage!</span> Let's help this creative powerhouse build her next chapter!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: Gautam -->
+                        <div class="couple-slide w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-4">
+                            <div class="w-full max-w-xs h-[95%] bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                                <!-- Image -->
+                                <div class="h-2/5 w-full bg-cover bg-center" style="background-image: url('https://kapilatgoogle.github.io/draft/gdp.jpg');">
+                                </div>
+                                <!-- Text Content -->
+                                <div class="p-4 flex-grow overflow-y-auto app-screen">
+                                    <h3 class="text-2xl font-bold text-custom-blue text-center" style="font-family: 'Edu TAS Beginner', cursive;">Gautam</h3>
+                                    <p class="text-sm text-gray-500 mt-1 italic text-center">The Spice Warrior & All-Rounder Extraordinaire!</p>
+                                    <p class="text-xs text-gray-700 mt-4 text-left">
+                                        If life were a blockbuster film, Gautam would be the hero calmly eating the spiciest chili mid-fight. Armed with his coffee mug and charm, he powers through his days. On the cricket field, he’s the dependable <span class="text-custom-blue font-semibold">all-rounder</span>; off the field, he's the steady, fun, and <span class="text-custom-blue font-semibold">unstoppable</span> friend everyone wants. A true <span class="text-custom-blue font-semibold">movie buff</span>, he can quote Bollywood song’s lyrics at the drop of a hat.
+                                    </p>
+                                     <p class="text-xs text-gray-700 mt-2 text-left">
+                                        Now, he’s stepping into his most epic role yet: <span class="text-custom-blue font-semibold">Mehak’s partner for life!</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button id="prev-couple-btn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/50 rounded-full p-2 text-black hover:bg-white transition-all ml-1 z-10"><span class="material-icons">chevron_left</span></button>
+                    <button id="next-couple-btn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/50 rounded-full p-2 text-black hover:bg-white transition-all mr-1 z-10"><span class="material-icons">chevron_right</span></button>
+                 </div>
+                 
+                 <!-- Dot Indicators -->
+                 <div id="couple-dots" class="flex space-x-2 mt-4"></div>
             </section>
 
             <!-- Functions Section -->
@@ -142,6 +195,11 @@
                  
                  <!-- Dot Indicators -->
                  <div id="function-dots" class="flex space-x-2 mt-4"></div>
+            </section>
+
+            <!-- Story Section -->
+            <section id="story-section" class="page-section h-full bg-cover bg-center" style="scroll-snap-align: start; background-image: url('https://kapilatgoogle.github.io/draft/story.gif');">
+                <!-- This section is intentionally left blank to showcase the background GIF -->
             </section>
 
             <!-- Games Section -->
@@ -181,6 +239,11 @@
             <button onclick="scrollToSection('functions-section')" data-section="functions-section" class="nav-button flex flex-col items-center p-2 rounded-lg text-black hover:text-custom-blue transition-colors">
                 <span class="material-icons">celebration</span>
                 <span class="text-xs font-medium">Functions</span>
+            </button>
+            <!-- Story Button -->
+            <button onclick="scrollToSection('story-section')" data-section="story-section" class="nav-button flex flex-col items-center p-2 rounded-lg text-black hover:text-custom-blue transition-colors">
+                <span class="material-icons">auto_stories</span>
+                <span class="text-xs font-medium">Story</span>
             </button>
             <!-- Games Button -->
             <button onclick="scrollToSection('games-section')" data-section="games-section" class="nav-button flex flex-col items-center p-2 rounded-lg text-black hover:text-custom-blue transition-colors">
@@ -306,11 +369,84 @@
             updateCountdown();
 
 
+            // --- Couple Slideshow Logic ---
+            const coupleSlider = document.getElementById('couple-slider');
+            const prevCoupleBtn = document.getElementById('prev-couple-btn');
+            const nextCoupleBtn = document.getElementById('next-couple-btn');
+            const coupleDotsContainer = document.getElementById('couple-dots');
+            const coupleSlides = document.querySelectorAll('.couple-slide');
+            let currentCoupleSlideIndex = 0;
+            let autoCoupleSlideInterval; // Timer variable for couple slideshow
+
+            // Function to start/reset the auto-slide timer
+            const startAutoCoupleSlide = () => {
+                clearInterval(autoCoupleSlideInterval); 
+                autoCoupleSlideInterval = setInterval(() => {
+                    const nextIndex = (currentCoupleSlideIndex + 1) % coupleSlides.length;
+                    coupleSlider.scrollTo({
+                        left: coupleSlider.offsetWidth * nextIndex,
+                        behavior: 'smooth'
+                    });
+                }, 5000); // 5 seconds
+            };
+            
+            // Create dots for couple slider
+            coupleSlides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('w-2', 'h-2', 'rounded-full', 'bg-gray-300', 'transition-all', 'duration-300');
+                dot.addEventListener('click', () => {
+                    coupleSlider.scrollTo({
+                        left: coupleSlider.offsetWidth * index,
+                        behavior: 'smooth'
+                    });
+                    startAutoCoupleSlide(); // Reset timer on dot click
+                });
+                coupleDotsContainer.appendChild(dot);
+            });
+            const coupleDots = Array.from(coupleDotsContainer.children);
+
+            const updateCoupleSliderUI = (currentIndex) => {
+                currentCoupleSlideIndex = currentIndex; // Update current index
+                coupleDots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-custom-blue', index === currentIndex);
+                    dot.classList.toggle('bg-gray-300', index !== currentIndex);
+                });
+                prevCoupleBtn.disabled = currentIndex === 0;
+                nextCoupleBtn.disabled = currentIndex === coupleSlides.length - 1;
+                prevCoupleBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                nextCoupleBtn.style.opacity = currentIndex === coupleSlides.length - 1 ? '0.5' : '1';
+            };
+            
+            const coupleSlideObserver = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const intersectingSlide = entry.target;
+                        const index = Array.from(coupleSlides).indexOf(intersectingSlide);
+                        updateCoupleSliderUI(index);
+                    }
+                });
+            }, { root: coupleSlider, threshold: 0.5 });
+            
+            coupleSlides.forEach(slide => coupleSlideObserver.observe(slide));
+
+            prevCoupleBtn.addEventListener('click', () => {
+                coupleSlider.scrollBy({ left: -coupleSlider.offsetWidth, behavior: 'smooth' });
+                startAutoCoupleSlide(); // Reset timer on arrow click
+            });
+            nextCoupleBtn.addEventListener('click', () => {
+                coupleSlider.scrollBy({ left: coupleSlider.offsetWidth, behavior: 'smooth' });
+                startAutoCoupleSlide(); // Reset timer on arrow click
+            });
+            
+            updateCoupleSliderUI(0); // Initialize UI
+            startAutoCoupleSlide(); // Start the slideshow on load
+
+
             // --- Functions Slideshow Logic ---
-            const slider = document.getElementById('functions-slider');
-            const prevBtn = document.getElementById('prev-function-btn');
-            const nextBtn = document.getElementById('next-function-btn');
-            const dotsContainer = document.getElementById('function-dots');
+            const functionSlider = document.getElementById('functions-slider');
+            const prevFunctionBtn = document.getElementById('prev-function-btn');
+            const nextFunctionBtn = document.getElementById('next-function-btn');
+            const functionDotsContainer = document.getElementById('function-dots');
 
             const functionDetails = {
                 'mehandi': { icon: 'spa', title: 'Mehandi Lunch', dateTime: '11th Nov, Noon', venue: 'Pearl Hall', theme: 'Rani Pink & Orange theme', mapLink: 'https://maps.app.goo.gl/PKSrMmETdSkKjdLw6', imageUrl: 'https://kapilatgoogle.github.io/wedding-invite/mehendi-ceremony.jpg', color: '#658c35' },
@@ -338,80 +474,80 @@
                         </div>
                     </div>
                 `;
-                slider.insertAdjacentHTML('beforeend', slideHTML);
+                functionSlider.insertAdjacentHTML('beforeend', slideHTML);
             });
             
-            const slides = document.querySelectorAll('.function-slide');
+            const functionSlides = document.querySelectorAll('.function-slide');
             let currentFunctionSlideIndex = 0;
-            let autoSlideInterval;
+            let autoFunctionSlideInterval;
 
-            const startAutoSlide = () => {
-                clearInterval(autoSlideInterval); 
-                autoSlideInterval = setInterval(() => {
-                    const nextIndex = (currentFunctionSlideIndex + 1) % slides.length;
-                    slider.scrollTo({
-                        left: slider.offsetWidth * nextIndex,
+            const startAutoFunctionSlide = () => {
+                clearInterval(autoFunctionSlideInterval); 
+                autoFunctionSlideInterval = setInterval(() => {
+                    const nextIndex = (currentFunctionSlideIndex + 1) % functionSlides.length;
+                    functionSlider.scrollTo({
+                        left: functionSlider.offsetWidth * nextIndex,
                         behavior: 'smooth'
                     });
                 }, 5000);
             };
 
-            slides.forEach((_, index) => {
+            functionSlides.forEach((_, index) => {
                 const dot = document.createElement('button');
                 dot.classList.add('w-2', 'h-2', 'rounded-full', 'bg-gray-300', 'transition-all', 'duration-300');
                 dot.addEventListener('click', () => {
-                    slider.scrollTo({
-                        left: slider.offsetWidth * index,
+                    functionSlider.scrollTo({
+                        left: functionSlider.offsetWidth * index,
                         behavior: 'smooth'
                     });
-                    startAutoSlide();
+                    startAutoFunctionSlide();
                 });
-                dotsContainer.appendChild(dot);
+                functionDotsContainer.appendChild(dot);
             });
-            const dots = Array.from(dotsContainer.children);
+            const functionDots = Array.from(functionDotsContainer.children);
 
-            const updateSliderUI = (currentIndex) => {
+            const updateFunctionSliderUI = (currentIndex) => {
                 currentFunctionSlideIndex = currentIndex;
-                dots.forEach((dot, index) => {
+                functionDots.forEach((dot, index) => {
                     dot.classList.toggle('bg-custom-blue', index === currentIndex);
                     dot.classList.toggle('bg-gray-300', index !== currentIndex);
                 });
-                prevBtn.disabled = currentIndex === 0;
-                nextBtn.disabled = currentIndex === slides.length - 1;
-                prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
-                nextBtn.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
+                prevFunctionBtn.disabled = currentIndex === 0;
+                nextFunctionBtn.disabled = currentIndex === functionSlides.length - 1;
+                prevFunctionBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                nextFunctionBtn.style.opacity = currentIndex === functionSlides.length - 1 ? '0.5' : '1';
             };
             
-            const slideObserver = new IntersectionObserver((entries) => {
+            const functionSlideObserver = new IntersectionObserver((entries) => {
                  entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const intersectingSlide = entry.target;
-                        const index = Array.from(slides).indexOf(intersectingSlide);
-                        updateSliderUI(index);
+                        const index = Array.from(functionSlides).indexOf(intersectingSlide);
+                        updateFunctionSliderUI(index);
                     }
                 });
-            }, { root: slider, threshold: 0.5 });
+            }, { root: functionSlider, threshold: 0.5 });
             
-            slides.forEach(slide => slideObserver.observe(slide));
+            functionSlides.forEach(slide => functionSlideObserver.observe(slide));
 
-            prevBtn.addEventListener('click', () => {
-                slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
-                startAutoSlide();
+            prevFunctionBtn.addEventListener('click', () => {
+                functionSlider.scrollBy({ left: -functionSlider.offsetWidth, behavior: 'smooth' });
+                startAutoFunctionSlide();
             });
-            nextBtn.addEventListener('click', () => {
-                slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
-                startAutoSlide();
+            nextFunctionBtn.addEventListener('click', () => {
+                functionSlider.scrollBy({ left: functionSlider.offsetWidth, behavior: 'smooth' });
+                startAutoFunctionSlide();
             });
             
-            startAutoSlide();
+            startAutoFunctionSlide();
 
             // --- Game Logic ---
             const quizData = [
-                { question: "Which of these is a true fact about Mehak?", options: ["Has packed outfits for an international trip basis weather for the day, place of visit and timing of the sight seeing ( morning , twilight or night )", "One of her instagram singing videos got viral when it was reshared by Jonita", "Has played cricket only once, got injured without batting a bowl or even bowling one. Has never dared to play again"], answer: "One of her instagram singing videos got viral when it was reshared by Jonita" },
+                { question: "Which of these is NOT true about Mehak?", options: ["Has packed outfits for an international trip basis weather for the day, place of visit and timing of the sight seeing ( morning , twilight or night )", "One of her instagram singing videos got viral when it was reshared by Jonita", "Has played cricket only once, got injured without batting a bowl or even bowling one. Has never dared to play again"], answer: "One of her instagram singing videos got viral when it was reshared by Jonita" },
                 { question: "What is Mehak most likely to order on a cheat day?", options: ["Margherita Pizza 🍕", "Aloo tikki Chaat 🌶️", "Nutella strawberry crepes 🍓🍫", "Chilli garlic noodles 🍜"], answer: "Nutella strawberry crepes 🍓🍫" },
                 { question: "What's her all time favourite song?", options: ["Aao kabhi haveli pe", "Mayya Mayya", "Lag ja gale", "Baahon ke darmiyan"], answer: "Lag ja gale" },
                 { question: "Which of these is her ideal weekend plan?", options: ["Netflix & Chill 📺", "Dancing till 2 AM 💃", "Road trip with friends 🚗", "Painting, music and food at home 🎨🎶"], answer: "Painting, music and food at home 🎨🎶" },
-                { question: "Mehak’s guilty pleasure show/movie would be?", options: ["Jab we met 🎬", "F.R.I.E.N.D.S. T📺", "The Ugly truth", "Sarabhai vs Sarabhai 💁🏻‍♀️"], answer: "Jab we met 🎬" },
+                { question: "What's her guilty pleasure show/movie?", options: ["Jab we met 🎬", "F.R.I.E.N.D.S. 📺", "The Ugly truth", "Sarabhai vs Sarabhai 💁🏻‍♀️"], answer: "Jab we met 🎬" },
                 { question: "What’s the one thing she always carries in her bag?", options: ["Perfume", "Lip balm 💄", "Sunglasses 🕶️", "Hand sanitizer"], answer: "Perfume" },
                 { question: "What is Mehak’s go-to dance move at a party?", options: ["Bhangra hands up 🙌", "Bollywood thumka 💃", "Freestyle groove ✨", "All the above"], answer: "All the above" },
                 { question: "What’s her favorite way to start the day?", options: ["A morning walk 🚶‍♀️", "A cup of coffee ☕", "Scrolling Instagram 📱", "Snoozing the alarm… again ⏰"], answer: "A morning walk 🚶‍♀️" },
@@ -512,5 +648,7 @@
     </script>
 </body>
 </html>
+
+
 
 
