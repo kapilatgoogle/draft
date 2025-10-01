@@ -30,6 +30,12 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* This ensures the app container correctly fits mobile viewports, especially on iOS */
+        #app-container {
+            height: 100vh; /* Fallback for older browsers */
+            height: 100dvh; /* Dynamic viewport height, adjusts for browser UI like the address bar */
+        }
+
         /* Making the scrollbar invisible for a cleaner app look */
         .app-screen::-webkit-scrollbar {
             width: 0;
@@ -74,7 +80,7 @@
     <!-- 
       This is the main container for our app.
     -->
-    <div id="app-container" class="w-full h-screen bg-white overflow-hidden flex flex-col 
+    <div id="app-container" class="w-full bg-white overflow-hidden flex flex-col 
                                    md:max-w-sm md:h-[85vh] md:max-h-[800px] md:rounded-3xl 
                                    md:shadow-2xl md:border-4 md:border-black">
 
@@ -306,7 +312,8 @@
                 'https://kapilatgoogle.github.io/draft/hero3.jpg',
                 'https://kapilatgoogle.github.io/draft/hero4.jpg',
                 'https://kapilatgoogle.github.io/draft/hero5.jpg',
-                'https://kapilatgoogle.github.io/draft/hero6.jpg'
+                'https://kapilatgoogle.github.io/draft/hero6.jpg',
+                'https://kapilatgoogle.github.io/draft/hero7.jpg'
             ]; 
             let currentInviteBgIndex = 0;
 
@@ -375,20 +382,6 @@
             const nextCoupleBtn = document.getElementById('next-couple-btn');
             const coupleDotsContainer = document.getElementById('couple-dots');
             const coupleSlides = document.querySelectorAll('.couple-slide');
-            let currentCoupleSlideIndex = 0;
-            let autoCoupleSlideInterval; // Timer variable for couple slideshow
-
-            // Function to start/reset the auto-slide timer
-            const startAutoCoupleSlide = () => {
-                clearInterval(autoCoupleSlideInterval); 
-                autoCoupleSlideInterval = setInterval(() => {
-                    const nextIndex = (currentCoupleSlideIndex + 1) % coupleSlides.length;
-                    coupleSlider.scrollTo({
-                        left: coupleSlider.offsetWidth * nextIndex,
-                        behavior: 'smooth'
-                    });
-                }, 5000); // 5 seconds
-            };
             
             // Create dots for couple slider
             coupleSlides.forEach((_, index) => {
@@ -399,14 +392,12 @@
                         left: coupleSlider.offsetWidth * index,
                         behavior: 'smooth'
                     });
-                    startAutoCoupleSlide(); // Reset timer on dot click
                 });
                 coupleDotsContainer.appendChild(dot);
             });
             const coupleDots = Array.from(coupleDotsContainer.children);
 
             const updateCoupleSliderUI = (currentIndex) => {
-                currentCoupleSlideIndex = currentIndex; // Update current index
                 coupleDots.forEach((dot, index) => {
                     dot.classList.toggle('bg-custom-blue', index === currentIndex);
                     dot.classList.toggle('bg-gray-300', index !== currentIndex);
@@ -431,15 +422,12 @@
 
             prevCoupleBtn.addEventListener('click', () => {
                 coupleSlider.scrollBy({ left: -coupleSlider.offsetWidth, behavior: 'smooth' });
-                startAutoCoupleSlide(); // Reset timer on arrow click
             });
             nextCoupleBtn.addEventListener('click', () => {
                 coupleSlider.scrollBy({ left: coupleSlider.offsetWidth, behavior: 'smooth' });
-                startAutoCoupleSlide(); // Reset timer on arrow click
             });
             
             updateCoupleSliderUI(0); // Initialize UI
-            startAutoCoupleSlide(); // Start the slideshow on load
 
 
             // --- Functions Slideshow Logic ---
@@ -648,7 +636,4 @@
     </script>
 </body>
 </html>
-
-
-
 
