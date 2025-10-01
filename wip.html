@@ -80,7 +80,7 @@
     <!-- 
       This is the main container for our app.
     -->
-    <div id="app-container" class="w-full bg-white overflow-hidden flex flex-col 
+    <div id="app-container" class="relative w-full bg-white overflow-hidden flex flex-col 
                                    md:max-w-sm md:h-[85vh] md:max-h-[800px] md:rounded-3xl 
                                    md:shadow-2xl md:border-4 md:border-black">
 
@@ -259,8 +259,31 @@
         </footer>
     </div>
 
+    <audio id="bg-music" loop src="https://kapilatgoogle.github.io/draft/bg-sound.mp3"></audio>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const bgMusic = document.getElementById('bg-music');
+
+            // --- Unlock Audio on First User Interaction ---
+            // Modern browsers require a user gesture (like a click) to start audio.
+            // This function runs once on the first click/tap anywhere on the page.
+            // It "unlocks" the audio by playing and immediately pausing it.
+            // After this, our scrolling logic can control the music without issues.
+            const unlockAudio = () => {
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Audio is unlocked, now pause it immediately.
+                        bgMusic.pause();
+                    }).catch(error => {
+                        console.error("Audio could not be unlocked:", error);
+                    });
+                }
+            };
+            window.addEventListener('click', unlockAudio, { once: true });
+            window.addEventListener('touchstart', unlockAudio, { once: true });
+            
             // --- Navigation and Scrolling Logic ---
             const sections = document.querySelectorAll('.page-section');
             const navButtons = document.querySelectorAll('.nav-button');
@@ -286,6 +309,23 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const sectionId = entry.target.id;
+
+                        // --- Audio Control Logic based on Section ---
+                        if (sectionId === 'preview-section') {
+                            if (!bgMusic.paused) {
+                                bgMusic.pause();
+                            }
+                        } else {
+                            if (bgMusic.paused) {
+                                // The catch is a fallback for the first time, in case the unlock event hasn't fired yet.
+                                bgMusic.play().catch(error => {
+                                    // This log is expected on the very first scroll before a click.
+                                    console.log("Audio play failed, requires user interaction.", error);
+                                });
+                            }
+                        }
+
+                        // Update nav button styles
                         navButtons.forEach(button => {
                             if (button.dataset.section === sectionId) {
                                 button.classList.add('text-custom-blue');
@@ -458,7 +498,7 @@
                                     View Map
                                 </a>
                             </div>
-                            <div class="flex-grow bg-cover bg-center" style="background-image: url('${details.imageUrl}')"></div>
+                            <div class="flex-grow bg-cover bg-bottom" style="background-image: url('${details.imageUrl}')"></div>
                         </div>
                     </div>
                 `;
